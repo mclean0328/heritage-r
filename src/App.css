@@ -13,8 +13,8 @@
 
 .main-content::after {
   content: '';
-  position: absolute;
-  bottom: 20px;
+  position: fixed;
+  bottom: 90px;
   right: 20px;
   width: 120px;
   height: 120px;
@@ -411,7 +411,7 @@
 .gallery-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 48px 24px 160px;
 }
 
 .gallery-header {
@@ -465,7 +465,7 @@
 .build-detail {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 32px 24px 60px;
+  padding: 32px 24px 160px;
 }
 
 .back-link {
@@ -585,7 +585,7 @@
 .about-page {
   max-width: 800px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 48px 24px 160px;
 }
 
 .about-header {
@@ -662,7 +662,7 @@
 .contact-page {
   max-width: 900px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 48px 24px 160px;
 }
 
 .contact-header {
@@ -761,73 +761,12 @@
   resize: vertical;
 }
 
-/* ============ Responsive ============ */
-
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 2.2rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-
-  .about-stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero {
-    min-height: 380px;
-  }
-
-  .build-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .detail-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .section-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .nav-links {
-    gap: 4px;
-  }
-
-  .nav-link {
-    padding: 6px 10px;
-    font-size: 0.82rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 1.8rem;
-  }
-
-  .specs-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* ============ Configuration Page ============ */
 
 .config-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 48px 24px 160px;
 }
 
 .config-header {
@@ -1073,8 +1012,81 @@
   color: var(--text-muted);
 }
 
-/* Configuration Responsive */
+/* ============ Responsive ============ */
+
 @media (max-width: 768px) {
+  /* --- Home --- */
+  .home-brand {
+    font-size: 3.5rem;
+  }
+
+  /* --- Page Headers --- */
+  .gallery-header h1,
+  .about-header h1,
+  .contact-header h1,
+  .config-header h1 {
+    font-size: 1.7rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.4rem;
+  }
+
+  /* --- Sections --- */
+  .section {
+    padding: 36px 16px;
+  }
+
+  .gallery-page,
+  .about-page,
+  .contact-page,
+  .config-page,
+  .build-detail {
+    padding: 64px 16px 120px;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* --- Build Grid --- */
+  .build-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* --- Build Detail --- */
+  .detail-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .detail-title {
+    font-size: 1.5rem;
+  }
+
+  /* --- About --- */
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .about-section h2 {
+    font-size: 1.2rem;
+  }
+
+  .stat-number {
+    font-size: 1.1rem;
+  }
+
+  /* --- Contact --- */
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- Config --- */
   .config-summary {
     grid-template-columns: 1fr;
   }
@@ -1089,9 +1101,89 @@
     font-size: 0.7rem;
     padding: 2px 8px;
   }
+
+  /* --- Info Grid --- */
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- Hamburger --- */
+  .hamburger {
+    top: 14px;
+    left: 14px;
+    padding: 9px;
+  }
+
+  /* --- Sidebar --- */
+  .sidebar {
+    width: 260px;
+  }
+
+  /* --- Watermark --- */
+  .main-content::after {
+    width: 60px;
+    height: 60px;
+    bottom: 70px;
+    right: 12px;
+    opacity: 0.12;
+  }
+
+  /* --- Footer --- */
+  .footer-inner {
+    padding: 20px 16px;
+  }
+
+  .footer p {
+    font-size: 0.82rem;
+  }
+
+  .footer-sub {
+    font-size: 0.72rem;
+  }
 }
 
 @media (max-width: 480px) {
+  /* --- Home --- */
+  .home-brand {
+    font-size: 2.5rem;
+  }
+
+  /* --- Page Headers --- */
+  .gallery-header h1,
+  .about-header h1,
+  .contact-header h1,
+  .config-header h1 {
+    font-size: 1.4rem;
+  }
+
+  /* --- Pages --- */
+  .gallery-page,
+  .about-page,
+  .contact-page,
+  .config-page,
+  .build-detail {
+    padding: 60px 12px 100px;
+  }
+
+  /* --- Build Detail --- */
+  .detail-title {
+    font-size: 1.3rem;
+  }
+
+  .specs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- About --- */
+  .about-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .about-stat {
+    padding: 16px 12px;
+  }
+
+  /* --- Config --- */
   .config-filters {
     gap: 6px;
   }
@@ -1100,4 +1192,48 @@
     padding: 6px 12px;
     font-size: 0.8rem;
   }
+
+  .summary-value {
+    font-size: 1.3rem;
+  }
+
+  /* --- Cards --- */
+  .card-body {
+    padding: 12px 16px 16px;
+  }
+
+  .card-title {
+    font-size: 1.05rem;
+  }
+
+  /* --- Search --- */
+  .search-input {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+
+  /* --- Contact Form --- */
+  .contact-form-group input,
+  .contact-form-group textarea {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    padding: 11px 24px;
+    font-size: 0.9rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* --- Watermark --- */
+  .main-content::after {
+    width: 45px;
+    height: 45px;
+    bottom: 62px;
+    right: 8px;
+    opacity: 0.1;
+  }
 }
+
+/* Configuration Responsive — now in main responsive section above */
