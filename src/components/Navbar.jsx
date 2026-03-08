@@ -29,7 +29,8 @@ export default function Navbar() {
         <div className="sidebar-links">
           <Link to="/" className={isActive('/')} onClick={close}>Home</Link>
           <Link to="/about" className={isActive('/about')} onClick={close}>About</Link>
-          <Link to="/config" className={isActive('/config')} onClick={close}>Build</Link>
+          <Link to="/config" className={isActive('/config')} onClick={close}>Parts List</Link>
+          <Link to="/configurator" className={isActive('/configurator')} onClick={close}>Configurator</Link>
           <Link to="/gallery" className={isActive('/gallery')} onClick={close}>Featured</Link>
           <Link to="/contact" className={isActive('/contact')} onClick={close}>Contact</Link>
         </div>

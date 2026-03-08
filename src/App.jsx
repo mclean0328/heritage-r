@@ -6,6 +6,7 @@ import About from './pages/About';
 import Gallery from './pages/Gallery';
 import BuildDetail from './pages/BuildDetail';
 import Configuration from './pages/Configuration';
+import Configurator from './pages/Configurator';
 import Contact from './pages/Contact';
 import './App.css';
 
@@ -21,6 +22,7 @@ function App() {
             <Route path="/builds/:id" element={<BuildDetail />} />
             <Route path="/about" element={<About />} />
             <Route path="/config" element={<Configuration />} />
+            <Route path="/configurator" element={<Configurator />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
