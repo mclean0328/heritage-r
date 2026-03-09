@@ -8,7 +8,7 @@ export default function About() {
 
       <div className="about-content">
         <section className="about-section">
-          <h2>Why R53 Mini Cooper S?</h2>
+          <h2>Why the R53 Mini Cooper S?</h2>
           <p>
             Produced from 2002 to 2006, the R53 Mini Cooper S was BMW's bold
             reinterpretation of the classic Mini. Powered by a supercharged 1.6L

@@ -11,17 +11,16 @@
   position: relative;
 }
 
-.main-content::after {
-  content: '';
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  width: 120px;
-  height: 120px;
+.watermark {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
   background: url('/crest-watermark.png') center / contain no-repeat;
-  opacity: 0.2;
+  opacity: 0.5;
   pointer-events: none;
-  z-index: 100;
 }
 
 /* ============ Hamburger Button ============ */
@@ -163,6 +162,7 @@
 /* ============ Footer ============ */
 
 .footer {
+  position: relative;
   border-top: 1px solid var(--border);
   background: var(--bg-secondary);
 }
@@ -1522,12 +1522,11 @@
   }
 
   /* --- Watermark --- */
-  .main-content::after {
-    width: 60px;
-    height: 60px;
-    bottom: 70px;
-    right: 12px;
-    opacity: 0.12;
+  .watermark {
+    width: 36px;
+    height: 36px;
+    right: 16px;
+    opacity: 0.5;
   }
 
   /* --- Footer --- */
@@ -1705,11 +1704,10 @@
   }
 
   /* --- Watermark --- */
-  .main-content::after {
-    width: 45px;
-    height: 45px;
-    bottom: 62px;
-    right: 8px;
-    opacity: 0.1;
+  .watermark {
+    width: 28px;
+    height: 28px;
+    right: 12px;
+    opacity: 0.5;
   }
 }

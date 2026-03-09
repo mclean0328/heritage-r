@@ -4,6 +4,7 @@ export default function Footer() {
       <div className="footer-inner">
         <p>Heritage&#123;R&#125;</p>
       </div>
+      <div className="watermark" aria-hidden="true" />
     </footer>
   );
 }
