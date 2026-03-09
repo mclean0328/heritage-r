@@ -1015,14 +1015,15 @@
 /* ============ Configurator Page ============ */
 
 .configurator-page {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 48px 24px 160px;
+  padding: 48px 0 160px;
 }
 
 .configurator-header {
   text-align: center;
   margin-bottom: 24px;
+  padding: 0 24px;
 }
 
 .configurator-header h1 {
@@ -1041,6 +1042,7 @@
   gap: 16px;
   margin-bottom: 24px;
   flex-wrap: wrap;
+  padding: 0 24px;
 }
 
 .configurator-total {
@@ -1066,65 +1068,103 @@
 }
 
 .configurator-main {
-  display: grid;
-  grid-template-columns: 1fr 280px;
-  gap: 24px;
-  align-items: start;
+  display: block;
   margin-bottom: 40px;
 }
 
 .configurator-diagram {
   position: relative;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
+  background: linear-gradient(180deg, rgba(10,18,40,0.6) 0%, var(--bg-card) 40%, var(--bg-card) 60%, rgba(10,18,40,0.6) 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 24px 0;
   overflow: hidden;
 }
 
-.configurator-car-svg {
+.configurator-car-img {
   width: 100%;
   height: auto;
   display: block;
-}
-
-/* Markers */
-.cfg-marker {
-  transition: opacity 0.2s ease;
-}
-
-.cfg-marker-dimmed {
-  opacity: 0.15;
+  max-height: 60vh;
+  object-fit: contain;
+  opacity: 0.55;
+  user-select: none;
   pointer-events: none;
 }
 
-.cfg-marker-off circle:not([fill="transparent"]) {
-  opacity: 0.5;
+/* Marker dots — CSS positioned over the image */
+.cfg-marker-dot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 5;
+  transition: opacity 0.2s ease;
 }
 
-.cfg-marker-glow {
-  animation: cfgPulse 1.5s ease-in-out infinite;
+.cfg-marker-dot-inner {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--marker-color);
+  border: 2px solid transparent;
+  transition: all 0.15s ease;
+  box-shadow: 0 0 6px rgba(0,0,0,0.4);
 }
 
-@keyframes cfgPulse {
-  0%, 100% { opacity: 0.2; r: 14; }
-  50% { opacity: 0.5; r: 18; }
+.cfg-marker-off .cfg-marker-dot-inner {
+  background: transparent;
+  border-color: var(--marker-color);
+  opacity: 0.6;
 }
 
-.cfg-marker-label {
+.cfg-marker-hovered .cfg-marker-dot-inner,
+.cfg-marker-active .cfg-marker-dot-inner {
+  width: 16px;
+  height: 16px;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--marker-color) 50%, transparent);
+}
+
+.cfg-marker-active .cfg-marker-dot-inner {
+  width: 18px;
+  height: 18px;
+}
+
+.cfg-marker-dimmed {
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.cfg-marker-dot-label {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 4px);
+  transform: translateX(-50%);
+  font-size: 9px;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-secondary);
+  opacity: 0.75;
+  white-space: nowrap;
   pointer-events: none;
   user-select: none;
 }
 
+.cfg-marker-dimmed .cfg-marker-dot-label {
+  opacity: 0.1;
+}
+
 /* Tooltip */
-.cfg-tooltip {
+.cfg-marker-tooltip {
   position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
   background: rgba(6, 11, 24, 0.95);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-sm);
   padding: 8px 12px;
   pointer-events: none;
-  z-index: 10;
+  z-index: 20;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -1132,27 +1172,42 @@
   white-space: nowrap;
 }
 
-.cfg-tooltip strong {
+.cfg-marker-tooltip strong {
   color: var(--text-primary);
 }
 
-.cfg-tooltip span {
+.cfg-marker-tooltip span {
   color: var(--accent-glow);
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
 }
 
+@keyframes cfgPulse {
+  0%, 100% { box-shadow: 0 0 6px color-mix(in srgb, var(--marker-color) 30%, transparent); }
+  50% { box-shadow: 0 0 16px color-mix(in srgb, var(--marker-color) 60%, transparent); }
+}
+
+.cfg-marker-active .cfg-marker-dot-inner {
+  animation: cfgPulse 1.5s ease-in-out infinite;
+}
+
 /* Detail panel */
 .configurator-detail {
-  background: var(--bg-card);
+  background: rgba(6, 11, 24, 0.97);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  position: sticky;
-  top: 24px;
+  position: fixed;
+  top: 50%;
+  right: 24px;
+  transform: translateY(-50%);
+  width: 300px;
+  z-index: 50;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  backdrop-filter: blur(12px);
 }
 
 .cfg-detail-header {
@@ -1260,7 +1315,9 @@
 /* Parts checklist */
 .configurator-parts-list {
   border-top: 1px solid var(--border);
-  padding-top: 32px;
+  padding: 32px 24px 0;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .configurator-parts-list h2 {
@@ -1488,7 +1545,11 @@
 
   /* --- Configurator --- */
   .configurator-page {
-    padding: 64px 16px 120px;
+    padding: 64px 0 120px;
+  }
+
+  .configurator-header {
+    padding: 0 16px;
   }
 
   .configurator-header h1 {
@@ -1498,6 +1559,7 @@
   .configurator-controls {
     flex-direction: column;
     align-items: stretch;
+    padding: 0 16px;
   }
 
   .configurator-total {
@@ -1506,23 +1568,25 @@
     align-items: center;
   }
 
-  .configurator-main {
-    grid-template-columns: 1fr;
-  }
-
   .configurator-detail {
     position: fixed;
+    top: auto;
+    right: 0;
     bottom: 0;
     left: 0;
-    right: 0;
+    transform: none;
+    width: 100%;
     border-radius: var(--radius) var(--radius) 0 0;
-    z-index: 50;
     max-height: 50vh;
     overflow-y: auto;
     box-shadow: 0 -4px 30px rgba(0,0,0,0.5);
   }
 
-  .cfg-marker-label {
+  .configurator-parts-list {
+    padding: 32px 16px 0;
+  }
+
+  .cfg-marker-dot-label {
     font-size: 7px;
   }
 }
@@ -1613,14 +1677,26 @@
 
   /* --- Configurator --- */
   .configurator-page {
-    padding: 60px 12px 100px;
+    padding: 60px 0 100px;
+  }
+
+  .configurator-header {
+    padding: 0 12px;
   }
 
   .configurator-header h1 {
     font-size: 1.4rem;
   }
 
-  .cfg-marker-label {
+  .configurator-controls {
+    padding: 0 12px;
+  }
+
+  .configurator-parts-list {
+    padding: 32px 12px 0;
+  }
+
+  .cfg-marker-dot-label {
     display: none;
   }
 
