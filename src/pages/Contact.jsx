@@ -11,7 +11,7 @@ export default function Contact() {
           <div className="contact-card">
             <span className="contact-icon">&#x2709;</span>
             <h3>Email</h3>
-            <p>hello@heritager.com</p>
+            <p>hello@heritage-r.com</p>
           </div>
           <div className="contact-card">
             <span className="contact-icon">&#x1F4CD;</span>
