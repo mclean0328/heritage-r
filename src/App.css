@@ -224,7 +224,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('/flags-bg.png') center / cover no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('/flags-bg.png') center / cover no-repeat fixed;
 }
 
 .home-brand {
