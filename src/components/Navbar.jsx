@@ -54,42 +54,65 @@ const NAV_ITEMS = [
 
 export default function Navbar() {
   const [collapsed, setCollapsed] = useState(true);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
 
   const isActive = (path) => location.pathname === path ? 'sidebar-link active' : 'sidebar-link';
 
   return (
-    <nav className={`sidebar ${collapsed ? 'sidebar-collapsed' : ''}`}>
-      <div className="sidebar-header">
-        {!collapsed && (
-          <Link to="/" className="sidebar-brand">
-            Heritage&#123;R&#125;
-          </Link>
-        )}
+    <>
+      {!mobileOpen && (
         <button
-          className="sidebar-toggle"
-          onClick={() => setCollapsed(!collapsed)}
-          aria-label={collapsed ? 'Expand menu' : 'Collapse menu'}
-          title={collapsed ? 'Expand' : 'Collapse'}
+          className="mobile-menu-btn"
+          onClick={() => { setMobileOpen(true); setCollapsed(false); }}
+          aria-label="Open menu"
         >
-          {collapsed ? '▶' : '◀'}
+          <span /><span /><span />
         </button>
-      </div>
-      <div className="sidebar-links">
-        {NAV_ITEMS.map(({ to, label, icon, color }) => (
-          <Link
-            key={to}
-            to={to}
-            className={isActive(to)}
-            title={collapsed ? label : undefined}
+      )}
+      {mobileOpen && (
+        <div className="mobile-overlay" onClick={() => { setMobileOpen(false); setCollapsed(true); }} />
+      )}
+      <nav className={`sidebar ${collapsed ? 'sidebar-collapsed' : ''} ${mobileOpen ? 'sidebar-mobile-open' : ''}`}>
+        <div className="sidebar-header">
+          {!collapsed && (
+            <Link to="/" className="sidebar-brand" onClick={() => { setMobileOpen(false); setCollapsed(true); }}>
+              Heritage&#123;R&#125;
+            </Link>
+          )}
+          <button
+            className="sidebar-toggle"
+            onClick={() => setCollapsed(!collapsed)}
+            aria-label={collapsed ? 'Expand menu' : 'Collapse menu'}
+            title={collapsed ? 'Expand' : 'Collapse'}
           >
-            <span className="sidebar-link-icon" style={{ '--icon-color': color }}>
-              {icon}
-            </span>
-            {!collapsed && <span className="sidebar-link-label">{label}</span>}
-          </Link>
-        ))}
-      </div>
-    </nav>
+            {collapsed ? '▶' : '◀'}
+          </button>
+          <button
+            className="mobile-close-btn"
+            onClick={() => { setMobileOpen(false); setCollapsed(true); }}
+            aria-label="Close menu"
+          >
+            ◀
+          </button>
+        </div>
+        <div className="sidebar-links">
+          {NAV_ITEMS.map(({ to, label, icon, color }) => (
+            <Link
+              key={to}
+              to={to}
+              className={isActive(to)}
+              title={collapsed ? label : undefined}
+              onClick={() => { setMobileOpen(false); setCollapsed(true); }}
+            >
+              <span className="sidebar-link-icon" style={{ '--icon-color': color }}>
+                {icon}
+              </span>
+              {!collapsed && <span className="sidebar-link-label">{label}</span>}
+            </Link>
+          ))}
+        </div>
+      </nav>
+    </>
   );
 }
