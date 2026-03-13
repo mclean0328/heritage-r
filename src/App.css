@@ -193,8 +193,10 @@
 
 .footer {
   position: relative;
-  border-top: 1px solid var(--border);
-  background: var(--bg-secondary);
+  border-top: none;
+  background: transparent;
+  margin-top: -60px;
+  z-index: 1;
 }
 
 .footer-inner {
