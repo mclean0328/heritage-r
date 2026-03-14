@@ -757,13 +757,13 @@
   background: url('/mini-silhouette.svg') no-repeat;
   background-size: 280%;
   background-position: 15% 55%;
-  opacity: 0.04;
-  filter: brightness(0) invert(1);
-  -webkit-mask-image: linear-gradient(110deg, transparent 25%, white 50%, transparent 75%);
-  mask-image: linear-gradient(110deg, transparent 25%, white 50%, transparent 75%);
+  opacity: 0.1;
+  filter: brightness(0) invert(1) sepia(1) hue-rotate(100deg) saturate(5);
+  -webkit-mask-image: linear-gradient(110deg, transparent 5%, white 30%, white 70%, transparent 95%);
+  mask-image: linear-gradient(110deg, transparent 5%, white 30%, white 70%, transparent 95%);
   -webkit-mask-size: 200% 100%;
   mask-size: 200% 100%;
-  animation: silhouette-shimmer 8s ease-in-out infinite;
+  animation: silhouette-shimmer 16s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
 }
@@ -868,13 +868,13 @@
   background: url('/mini-silhouette.svg') no-repeat;
   background-size: 320%;
   background-position: 85% 40%;
-  opacity: 0.045;
-  filter: brightness(0) invert(1);
-  -webkit-mask-image: linear-gradient(-110deg, transparent 25%, white 50%, transparent 75%);
-  mask-image: linear-gradient(-110deg, transparent 25%, white 50%, transparent 75%);
+  opacity: 0.1;
+  filter: brightness(0) invert(1) sepia(1) hue-rotate(100deg) saturate(5);
+  -webkit-mask-image: linear-gradient(-110deg, transparent 5%, white 30%, white 70%, transparent 95%);
+  mask-image: linear-gradient(-110deg, transparent 5%, white 30%, white 70%, transparent 95%);
   -webkit-mask-size: 200% 100%;
   mask-size: 200% 100%;
-  animation: silhouette-shimmer 10s ease-in-out infinite;
+  animation: silhouette-shimmer 20s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
 }
@@ -1301,13 +1301,13 @@
   background: url('/mini-silhouette.svg') no-repeat;
   background-size: 250%;
   background-position: 50% 45%;
-  opacity: 0.035;
-  filter: brightness(0) invert(1);
-  -webkit-mask-image: linear-gradient(90deg, transparent 25%, white 50%, transparent 75%);
-  mask-image: linear-gradient(90deg, transparent 25%, white 50%, transparent 75%);
+  opacity: 0.09;
+  filter: brightness(0) invert(1) sepia(1) hue-rotate(100deg) saturate(5);
+  -webkit-mask-image: linear-gradient(90deg, transparent 5%, white 30%, white 70%, transparent 95%);
+  mask-image: linear-gradient(90deg, transparent 5%, white 30%, white 70%, transparent 95%);
   -webkit-mask-size: 200% 100%;
   mask-size: 200% 100%;
-  animation: silhouette-shimmer 12s ease-in-out infinite;
+  animation: silhouette-shimmer 24s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
 }
