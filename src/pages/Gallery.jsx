@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { supabase } from '../lib/supabase';
 import BuildCard from '../components/BuildCard';
 
 export default function Gallery() {
@@ -7,18 +8,31 @@ export default function Gallery() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const params = search ? `?search=${encodeURIComponent(search)}` : '';
-    setLoading(true);
-    fetch(`/api/builds${params}`)
-      .then(res => res.json())
-      .then(data => {
-        setBuilds(data);
-        setLoading(false);
-      })
-      .catch(err => {
+    async function fetchBuilds() {
+      setLoading(true);
+      try {
+        let query = supabase
+          .from('builds')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (search) {
+          query = query.or(
+            `title.ilike.%${search}%,color.ilike.%${search}%,owner.ilike.%${search}%`
+          );
+        }
+
+        const { data, error } = await query;
+        if (error) throw error;
+        setBuilds(data || []);
+      } catch (err) {
         console.error('Failed to load builds:', err);
+      } finally {
         setLoading(false);
-      });
+      }
+    }
+
+    fetchBuilds();
   }, [search]);
 
   return (

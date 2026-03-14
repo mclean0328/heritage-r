@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { supabase } from '../lib/supabase';
 
 export default function BuildDetail() {
   const { id } = useParams();
@@ -8,16 +9,24 @@ export default function BuildDetail() {
   const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
-    fetch(`/api/builds/${id}`)
-      .then(res => {
-        if (!res.ok) throw new Error('Not found');
-        return res.json();
-      })
-      .then(data => {
+    async function fetchBuild() {
+      try {
+        const { data, error } = await supabase
+          .from('builds')
+          .select('*')
+          .eq('id', id)
+          .single();
+
+        if (error) throw error;
         setBuild(data);
+      } catch {
+        // build not found
+      } finally {
         setLoading(false);
-      })
-      .catch(() => setLoading(false));
+      }
+    }
+
+    fetchBuild();
   }, [id]);
 
   if (loading) return <div className="loading">Loading build...</div>;
