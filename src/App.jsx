@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -10,12 +11,21 @@ import Configurator from './pages/Configurator';
 import Contact from './pages/Contact';
 import './App.css';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
 function AppContent() {
   const location = useLocation();
   const isHome = location.pathname === '/';
 
   return (
     <div className="app">
+      <ScrollToTop />
       <Navbar />
       <main className="main-content">
         <Routes>
