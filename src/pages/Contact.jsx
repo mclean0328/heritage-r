@@ -13,6 +13,8 @@ export default function Contact() {
     e.preventDefault();
     setStatus('sending');
 
+    if (!supabase) { setStatus('error'); return; }
+
     try {
       const { error } = await supabase.from('messages').insert({
         name: form.name,

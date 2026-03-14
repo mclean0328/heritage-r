@@ -9,6 +9,7 @@ export default function Gallery() {
 
   useEffect(() => {
     async function fetchBuilds() {
+      if (!supabase) { setLoading(false); return; }
       setLoading(true);
       try {
         let query = supabase

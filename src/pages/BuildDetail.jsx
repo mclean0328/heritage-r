@@ -10,6 +10,7 @@ export default function BuildDetail() {
 
   useEffect(() => {
     async function fetchBuild() {
+      if (!supabase) { setLoading(false); return; }
       try {
         const { data, error } = await supabase
           .from('builds')
