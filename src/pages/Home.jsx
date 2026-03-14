@@ -14,12 +14,11 @@ export default function Home() {
       setTimeout(() => setIntroPhase(1), 800),
       setTimeout(() => setIntroPhase(2), 1800),
       setTimeout(() => setIntroPhase(3), 2800),
-      setTimeout(() => setIntroPhase(4), 3600),
       setTimeout(() => {
-        setIntroPhase(5);
+        setIntroPhase(4);
         setIntroComplete(true);
         sessionStorage.setItem('heritage-intro-seen', '1');
-      }, 4500),
+      }, 3600),
     ];
 
     return () => timers.forEach(clearTimeout);
@@ -43,10 +42,6 @@ export default function Home() {
             className="intro-car"
             aria-hidden="true"
           />
-          <h1 className="intro-brand" aria-hidden="true">
-            Heritage&#123;R&#125;
-          </h1>
-          <div className="intro-line" />
         </div>
       )}
     </div>

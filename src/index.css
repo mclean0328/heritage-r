@@ -11,23 +11,23 @@
   --bg-secondary: #0c1225;
   --bg-card: #111a32;
   --bg-input: #152040;
-  --text-primary: #f2f4f8;
-  --text-secondary: #9aa8c4;
-  --text-muted: #5c6b8a;
+  --text-primary: #ffffff;
+  --text-secondary: #b0bdd6;
+  --text-muted: #6e7fa0;
   --accent: #004225;
-  --accent-light: #00643a;
-  --accent-glow: #00a86b;
-  --highlight: #c8102e;
-  --highlight-light: #e63950;
+  --accent-light: #00804a;
+  --accent-glow: #00c878;
+  --highlight: #e01030;
+  --highlight-light: #ff4060;
   --royal-blue: #1a3a8a;
-  --royal-blue-light: #2850b0;
-  --border: #1c2a4a;
-  --border-light: #2a3d66;
-  --danger: #c8102e;
+  --royal-blue-light: #3868d0;
+  --border: #1e3058;
+  --border-light: #304878;
+  --danger: #e01030;
   --radius: 12px;
   --radius-sm: 8px;
   --shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 100, 200, 0.08);
 }
 
 html {
@@ -74,13 +74,14 @@ h1, h2, h3 {
 }
 
 .btn-primary {
-  background: var(--accent-light);
+  background: linear-gradient(135deg, var(--accent-light), var(--accent-glow));
   color: white;
+  box-shadow: 0 2px 12px rgba(0, 200, 120, 0.2);
 }
 
 .btn-primary:hover {
-  background: var(--accent-glow);
-  box-shadow: 0 0 20px rgba(0, 168, 107, 0.25);
+  background: linear-gradient(135deg, var(--accent-glow), #00e080);
+  box-shadow: 0 4px 24px rgba(0, 200, 120, 0.4);
 }
 
 .btn-primary:disabled {
