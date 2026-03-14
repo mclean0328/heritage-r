@@ -2,7 +2,7 @@ export default function About() {
   return (
     <div className="about-page">
       <div className="about-header">
-        <h1>About Heritage&#123;R&#125;</h1>
+        <h1>About <span className="brand-text">Heritage&#123;R&#125;</span></h1>
         <p>Fun doesn't need to be unaffordable</p>
       </div>
 
@@ -37,7 +37,7 @@ export default function About() {
         <section className="about-section">
           <h2>Our Mission</h2>
           <p>
-            Heritage R exists to take the original affordable fun to a new level.
+            <span className="brand-text">Heritage&#123;R&#125;</span> exists to take the original affordable fun to a new level.
             With restomods driving the earth that cost $100k, $200k, $1M, it's time
             to go back to our roots; everyday, FUN, drivers' cars...but better.
           </p>
