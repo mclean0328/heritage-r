@@ -139,39 +139,6 @@ export default function Configurator() {
           })}
         </div>
 
-        {/* Detail panel */}
-        {activePartData && (
-          <div className="configurator-detail">
-            <div className="cfg-detail-header">
-              <h3>{activePartData.name}</h3>
-              <button className="cfg-detail-close" onClick={() => setActivePart(null)}>&times;</button>
-            </div>
-
-            <span className={`cat-badge cat-${activePartData.category}`}>
-              {CATEGORIES[activePartData.category].icon} {CATEGORIES[activePartData.category].label}
-            </span>
-
-            <div className="cfg-detail-cost">
-              {formatCost(activePartData.cost)}
-            </div>
-
-            {activePartData.url && (
-              <a href={activePartData.url} target="_blank" rel="noopener noreferrer" className="cfg-detail-source">
-                {getDomain(activePartData.url)} &#x2197;
-              </a>
-            )}
-
-            <button
-              className={`cfg-toggle-btn ${selectedParts.has(activePartData.name) ? 'cfg-toggle-on' : ''}`}
-              onClick={() => togglePart(activePartData.name)}
-            >
-              <span className="cfg-toggle-track">
-                <span className="cfg-toggle-knob" />
-              </span>
-              <span>{selectedParts.has(activePartData.name) ? 'Included in build' : 'Not included'}</span>
-            </button>
-          </div>
-        )}
       </div>
 
       {/* Parts checklist */}
@@ -210,6 +177,43 @@ export default function Configurator() {
           );
         })}
       </div>
+
+      {/* Detail panel — outside configurator-main to avoid stacking context issues */}
+      {activePartData && (
+        <>
+          <div className="cfg-detail-backdrop" onClick={() => setActivePart(null)} />
+          <div className="configurator-detail">
+            <div className="cfg-detail-header">
+              <h3>{activePartData.name}</h3>
+              <button className="cfg-detail-close" onClick={() => setActivePart(null)}>&times;</button>
+            </div>
+
+            <span className={`cat-badge cat-${activePartData.category}`}>
+              {CATEGORIES[activePartData.category].icon} {CATEGORIES[activePartData.category].label}
+            </span>
+
+            <div className="cfg-detail-cost">
+              {formatCost(activePartData.cost)}
+            </div>
+
+            {activePartData.url && (
+              <a href={activePartData.url} target="_blank" rel="noopener noreferrer" className="cfg-detail-source">
+                {getDomain(activePartData.url)} &#x2197;
+              </a>
+            )}
+
+            <button
+              className={`cfg-toggle-btn ${selectedParts.has(activePartData.name) ? 'cfg-toggle-on' : ''}`}
+              onClick={() => togglePart(activePartData.name)}
+            >
+              <span className="cfg-toggle-track">
+                <span className="cfg-toggle-knob" />
+              </span>
+              <span>{selectedParts.has(activePartData.name) ? 'Included in build' : 'Not included'}</span>
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
