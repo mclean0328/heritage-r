@@ -18,14 +18,6 @@ const NAV_ITEMS = [
       </svg>
     ),
   },
-//  {
-//    to: '/config', label: 'Parts List', color: '#ffffff',
-//    icon: (
-//      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-//        <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
-//      </svg>
-//    ),
-//  },
   {
     to: '/configurator', label: 'Configurator', color: '#ffffff',
     icon: (
@@ -34,14 +26,6 @@ const NAV_ITEMS = [
       </svg>
     ),
   },
-//  {
-//    to: '/gallery', label: 'Featured', color: '#ffffff',
-//    icon: (
-//      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-//        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-//      </svg>
-//    ),
-//  },
   {
     to: '/contact', label: 'Contact', color: '#ffffff',
     icon: (
@@ -53,64 +37,41 @@ const NAV_ITEMS = [
 ];
 
 export default function Navbar() {
-  const [collapsed, setCollapsed] = useState(true);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
-  const isActive = (path) => location.pathname === path ? 'sidebar-link active' : 'sidebar-link';
+  const isActive = (path) =>
+    location.pathname === path ? 'float-link float-link-active' : 'float-link';
 
   return (
     <>
-      {!mobileOpen && (
-        <button
-          className="mobile-menu-btn"
-          onClick={() => { setMobileOpen(true); setCollapsed(false); }}
-          aria-label="Open menu"
-        >
-          <span /><span /><span />
-        </button>
+      <button
+        className={`menu-btn ${menuOpen ? 'menu-btn-open' : ''}`}
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+      >
+        <span /><span /><span />
+      </button>
+
+      {menuOpen && (
+        <div className="float-backdrop" onClick={() => setMenuOpen(false)} />
       )}
-      {mobileOpen && (
-        <div className="mobile-overlay" onClick={() => { setMobileOpen(false); setCollapsed(true); }} />
-      )}
-      <nav className={`sidebar ${collapsed ? 'sidebar-collapsed' : ''} ${mobileOpen ? 'sidebar-mobile-open' : ''}`}>
-        <div className="sidebar-header">
-          <Link to="/" className="sidebar-brand" onClick={() => { setMobileOpen(false); setCollapsed(true); }}>
-            Heritage&#123;R&#125;
+
+      <nav className={`float-nav ${menuOpen ? 'float-nav-open' : ''}`}>
+        {NAV_ITEMS.map(({ to, label, icon, color }, index) => (
+          <Link
+            key={to}
+            to={to}
+            className={isActive(to)}
+            onClick={() => setMenuOpen(false)}
+            style={{ '--i': index }}
+          >
+            <span className="float-link-icon" style={{ '--icon-color': color }}>
+              {icon}
+            </span>
+            <span className="float-link-label">{label}</span>
           </Link>
-          <button
-            className="sidebar-toggle"
-            onClick={() => setCollapsed(!collapsed)}
-            aria-label={collapsed ? 'Expand menu' : 'Collapse menu'}
-            title={collapsed ? 'Expand' : 'Collapse'}
-          >
-            {collapsed ? '▶' : '◀'}
-          </button>
-          <button
-            className="mobile-close-btn"
-            onClick={() => { setMobileOpen(false); setCollapsed(true); }}
-            aria-label="Close menu"
-          >
-            ◀
-          </button>
-        </div>
-        <div className="sidebar-links">
-          {NAV_ITEMS.map(({ to, label, icon, color }, index) => (
-            <Link
-              key={to}
-              to={to}
-              className={isActive(to)}
-              title={collapsed ? label : undefined}
-              onClick={() => { setMobileOpen(false); setCollapsed(true); }}
-              style={{ '--item-index': index }}
-            >
-              <span className="sidebar-link-icon" style={{ '--icon-color': color }}>
-                {icon}
-              </span>
-              <span className="sidebar-link-label">{label}</span>
-            </Link>
-          ))}
-        </div>
+        ))}
       </nav>
     </>
   );
