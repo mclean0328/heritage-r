@@ -4,7 +4,7 @@ import { CATEGORIES, PARTS, formatCost, getDomain } from '../data/partsData';
 const CATEGORY_COLORS = {
   interior: '#4a7ae8',
   exterior: '#e63950',
-  suspension: '#00a86b',
+  suspension: '#008550',
   performance: '#f0a030',
   maintenance: '#8888a0',
 };

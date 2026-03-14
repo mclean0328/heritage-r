@@ -14,9 +14,9 @@
   --text-primary: #ffffff;
   --text-secondary: #b0bdd6;
   --text-muted: #6e7fa0;
-  --accent: #004225;
-  --accent-light: #00804a;
-  --accent-glow: #00c878;
+  --accent: #003520;
+  --accent-light: #00653c;
+  --accent-glow: #009e58;
   --highlight: #e01030;
   --highlight-light: #ff4060;
   --royal-blue: #1a3a8a;
@@ -76,12 +76,12 @@ h1, h2, h3 {
 .btn-primary {
   background: linear-gradient(135deg, var(--accent-light), var(--accent-glow));
   color: white;
-  box-shadow: 0 2px 12px rgba(0, 200, 120, 0.2);
+  box-shadow: 0 2px 12px rgba(0, 158, 88, 0.2);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--accent-glow), #00e080);
-  box-shadow: 0 4px 24px rgba(0, 200, 120, 0.4);
+  background: linear-gradient(135deg, var(--accent-glow), #00b860);
+  box-shadow: 0 4px 24px rgba(0, 158, 88, 0.4);
 }
 
 .btn-primary:disabled {
